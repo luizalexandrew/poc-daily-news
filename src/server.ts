@@ -48,7 +48,7 @@ const postToInstaStory = async () => {
           // these are all supported stickers
           .add(
             StickerBuilder.hashtag({
-              tagName: 'dadasdasdasdas',
+              tagName: 'HashTagHere',
             }),
           )
           // .add(
@@ -106,7 +106,7 @@ const postToInstaStory = async () => {
     
         //   // mention the first story item
         //   .add(StickerBuilder.mentionReel((await ig.feed.userStory('username').items())[0]).center())
-    
+     
         //   // mention the first media on your timeline
         //   .add(StickerBuilder.attachmentFromMedia((await ig.feed.timeline().items())[0]).center())
           // .add(
