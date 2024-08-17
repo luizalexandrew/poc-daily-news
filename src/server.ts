@@ -4,7 +4,7 @@ require("dotenv").config();
 const { IgApiClient } = require("instagram-private-api");
 const { get } = require("request-promise");
 
-// import { StickerBuilder } from '../src/sticker-builder';
+import { StickerBuilder } from '../src/sticker-builder';
 
 
 
@@ -40,22 +40,22 @@ const postToInstaStory = async () => {
         url: "https://img.freepik.com/vetores-gratis/instagram-fundo-em-cores-gradientes_23-2147823814.jpg",
         encoding: null,
       });
-
+   
     await ig.publish.story({
         file,
         // this creates a new config
-        // stickerConfig: new StickerBuilder()
-        //   // these are all supported stickers
-        //   .add(
-        //     StickerBuilder.hashtag({
-        //       tagName: 'insta',
-        //     }).center(),
-        //   )
-        //   .add(
-        //     StickerBuilder.mention({
-        //       userId: ig.state.cookieUserId,
-        //     }).center(),
-        //   )
+        stickerConfig: new StickerBuilder()
+          // these are all supported stickers
+          .add(
+            StickerBuilder.hashtag({
+              tagName: 'dadasdasdasdas',
+            }).center(),
+          )
+          .add(
+            StickerBuilder.mention({
+              userId: ig.state.cookieUserId,
+            }).center(),
+          )
         //   .add(
         //     StickerBuilder.question({
         //       question: 'My Question',
@@ -120,7 +120,7 @@ const postToInstaStory = async () => {
         //       y: 0.5,
         //     }),
         //   )
-        //   .build(),
+          .build(),
       });
 
 
