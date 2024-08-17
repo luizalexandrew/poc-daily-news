@@ -26,7 +26,7 @@ const postToInstaImage = async () => {
     url: "https://img.freepik.com/vetores-gratis/instagram-fundo-em-cores-gradientes_23-2147823814.jpg",
     encoding: null,
   });
-
+ 
   await ig.publish.photo({
     file: imageBuffer,
     caption: "Really nice photo from the internet!", // nice caption (optional)
@@ -49,13 +49,13 @@ const postToInstaStory = async () => {
           .add(
             StickerBuilder.hashtag({
               tagName: 'dadasdasdasdas',
-            }).center(),
+            }),
           )
-          .add(
-            StickerBuilder.mention({
-              userId: ig.state.cookieUserId,
-            }).center(),
-          )
+          // .add(
+          //   StickerBuilder.mention({
+          //     userId: ig.state.cookieUserId,
+          //   }).center(),
+          // )
         //   .add(
         //     StickerBuilder.question({
         //       question: 'My Question',
@@ -97,43 +97,41 @@ const postToInstaStory = async () => {
         //       correctAnswer: 1,
         //     }),
         //   )
-        //   .add(
-        //     StickerBuilder.slider({
-        //       question: 'Question',
-        //       emoji: '❤',
-        //     }),
-        //   )
+          // .add(
+          //   StickerBuilder.slider({
+          //     question: 'Question',
+          //     emoji: '❤',
+          //   }),
+          // )
     
         //   // mention the first story item
         //   .add(StickerBuilder.mentionReel((await ig.feed.userStory('username').items())[0]).center())
     
         //   // mention the first media on your timeline
         //   .add(StickerBuilder.attachmentFromMedia((await ig.feed.timeline().items())[0]).center())
-    
-        //   // you can also set different values for the position and dimensions
-        //   .add(
-        //     StickerBuilder.hashtag({
-        //       tagName: 'insta',
-        //       width: 0.5,
-        //       height: 0.5,
-        //       x: 0.5,
-        //       y: 0.5,
-        //     }),
-        //   )
+          // .add(
+          //   StickerBuilder.hashtag({
+          //     tagName: 'insta',
+          //     width: 0.5,
+          //     height: 0.5,
+          //     x: 0.5,
+          //     y: 0.5,
+          //   }),
+          // )
           .build(),
       });
 
 
 };
 
-app.get("/story", (req: Request, res: Response) => {
-  postToInstaStory();
+app.get("/story", async (req: Request, res: Response) => {
+  await postToInstaStory();
 
   res.send("Postando no story instagram");
 });
 
-app.get("/image", (req: Request, res: Response) => {
-  postToInstaImage();
+app.get("/image", async (req: Request, res: Response) => {
+  await postToInstaImage();
 
   res.send("Postando no imagem instagram");
 });
