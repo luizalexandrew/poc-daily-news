@@ -122,7 +122,7 @@ export class GreetingsCard extends Builder<Props> {
               />
               <div className="flex flex-col ml-6">
                 <h1 className="text-5xl text-white font-bold m-0">
-                  <span className="text-blue-500">{"Daily.fin"}!</span>
+                  <span className="text-blue-500">{"Daily.fin"}</span>
                 </h1>
                 <p className="text-gray-300 text-3xl m-0">{"Seu feed de notícias"}</p>
               </div>
