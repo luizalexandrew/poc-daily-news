@@ -212,7 +212,7 @@ app.get("/story", async (req: Request, res: Response) => {
 
   // // create card
   // Font.loadDefault();
-  const path = __dirname + "/font/Ubuntu-Regular.ttf" 
+  const path = __dirname + "/font/Ubuntu-Light.ttf" 
 
   console.log(path)
   // loading font from file would be like this
@@ -227,6 +227,8 @@ app.get("/story", async (req: Request, res: Response) => {
     .setMessage("Welcome to the server!");
 
   const image = await card.build({ format: "png" });
+
+  fs.writeFileSync('file.jpg', image);
 
   await postToInstaStory(image, false);
 

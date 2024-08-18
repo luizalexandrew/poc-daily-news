@@ -55,7 +55,7 @@ export class GreetingsCard extends Builder<Props> {
 
     return (
       <div className="h-full w-full flex flex-col items-center justify-center bg-[#23272A] rounded-xl">
-        <div className="px-6 bg-[#2B2F35AA] w-[96%] h-[84%] rounded-lg flex items-center">
+        <div className="px-6 bg-[#2B2F35AA] w-[96%] h-[100%] rounded-lg flex items-center">
           <img
             src={image.toDataURL()}
             className="flex h-[40] w-[40] rounded-full"
@@ -63,6 +63,13 @@ export class GreetingsCard extends Builder<Props> {
           <div className="flex flex-col ml-6">
             <h1 className="text-5xl text-white font-bold m-0">
               {type === "welcome" ? "Welcome" : "Goodbye"},{" "}
+              <span className="text-blue-500">{displayName}!</span>
+            </h1>
+            <p className="text-gray-300 text-3xl m-0">{message}</p>
+          </div>
+          <div className="flex flex-col ml-6">
+            <h1 className="text-5xl text-white font-bold m-0">
+              Noticias de hoje
               <span className="text-blue-500">{displayName}!</span>
             </h1>
             <p className="text-gray-300 text-3xl m-0">{message}</p>
