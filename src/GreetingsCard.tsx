@@ -16,7 +16,7 @@ interface Props {
 
 export class GreetingsCard extends Builder<Props> {
   constructor(value: "story" | "post" | "postlg") {
-    
+
     switch (value) {
       case 'story':
         super(1080, 1920);
@@ -48,7 +48,7 @@ export class GreetingsCard extends Builder<Props> {
     this.options.set("size", value);
     return this;
   }
-  
+
   setDisplayName(value: string) {
     this.options.set("displayName", value);
     return this;
@@ -123,7 +123,7 @@ export class GreetingsCard extends Builder<Props> {
           >
             <span className="pt-[100%]"></span>
 
-            <div className="flex items-start p-10 h-[170px]">
+            <div className="flex justify-center	 p-10 h-[170px] w-full">
               <img
                 src={image.toDataURL()}
                 className="flex h-[80px] w-[80px] rounded-full"
