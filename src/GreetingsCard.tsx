@@ -98,7 +98,7 @@ export class GreetingsCard extends Builder<Props> {
           />
         </div>
 
-        <div className={`flex flex-col w-[${this.width}px] h-[${this.height}px] z-10`}>
+        <div className={`flex flex-col w-[${this.width}px] h-[${this.height}px]`}>
 
           <div
             className="flex flex-col bg-[#000000]"
@@ -113,7 +113,7 @@ export class GreetingsCard extends Builder<Props> {
               // backgroundImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))'
             }}
           >
-            <span className="pt-[100%] inline-block"></span>
+            <span className="pt-[100%]"></span>
 
             <div className="flex items-start p-10 h-[170px]">
               <img
