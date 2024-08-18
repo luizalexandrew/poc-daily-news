@@ -16,7 +16,7 @@ interface Props {
 export class GreetingsCard extends Builder<Props> {
   constructor() {
     // set width and height
-    super(930, 280);
+    super(1080, 1920);
     // initialize props
     this.bootstrap({
       displayName: "",
@@ -52,28 +52,37 @@ export class GreetingsCard extends Builder<Props> {
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage(avatar);
+    const post = await loadImage("https://blog.cielo.com.br/wp-content/uploads/2019/03/quais-sao-as-taxas-da-cielo.jpg");
 
     return (
-      <div className="h-full w-full flex flex-col items-center justify-center bg-[#23272A] rounded-xl">
-        <div className="px-6 bg-[#2B2F35AA] w-[96%] h-[100%] rounded-lg flex items-center">
+      // <div className="h-full w-full flex flex-col  items-center justify-center w-[1080px] bg-[#2B2F35AA] rounded-xl h-[1000px]">
+      <div className="flex flex-col w-[1080px] bg-[#2B2F35AA] h-[1920px] bg-[#2B2F35]">
+
+        <div className="flex items-start p-10 bg-[#FFFF00] h-[170px]">
           <img
             src={image.toDataURL()}
-            className="flex h-[40] w-[40] rounded-full"
+            className="flex h-[100px] w-[100px] rounded-full"
           />
           <div className="flex flex-col ml-6">
             <h1 className="text-5xl text-white font-bold m-0">
-              {type === "welcome" ? "Welcome" : "Goodbye"},{" "}
+              {type === "welcome" ? "Welcome" : "Olocooo"},{" "}
               <span className="text-blue-500">{displayName}!</span>
             </h1>
             <p className="text-gray-300 text-3xl m-0">{message}</p>
           </div>
+        </div>
+        <div className="flex bg-contain bg-center" style={`background-image: url(${post})`}>
+          {/* <img
+            src={post.toDataURL()}
+            className="flex h-[100px] w-[100px] rounded-full"
+          />
           <div className="flex flex-col ml-6">
             <h1 className="text-5xl text-white font-bold m-0">
-              Noticias de hoje
+              {type === "welcome" ? "Welcome" : "Olocooo"},{" "}
               <span className="text-blue-500">{displayName}!</span>
             </h1>
             <p className="text-gray-300 text-3xl m-0">{message}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     );
