@@ -10,7 +10,7 @@ import { StickerBuilder } from "../src/sticker-builder";
 
 import { Font } from "canvacord";
 import { GreetingsCard } from "./GreetingsCard";
- 
+
 const app = express();
 
 const port: number = 3000;
@@ -107,11 +107,10 @@ const postToInstaImage = async (buffer, isPost = false) => {
 };
 
 const postToInstaStory = async (buffer, isPost = false) => {
-  
-  const imagePath = __dirname + "/../file.jpg"
+  const imagePath = __dirname + "/../file.jpg";
 
-  console.log(imagePath)
-  console.log('/home/luizalexandrew/Developer/git/poc-daily-news/file.jpg')
+  console.log(imagePath);
+  console.log("/home/luizalexandrew/Developer/git/poc-daily-news/file.jpg");
 
   // const imageBuffer = await get({
   //   url: imagePath,
@@ -119,8 +118,8 @@ const postToInstaStory = async (buffer, isPost = false) => {
   // });
 
   let imageBuffer = fs.readFileSync(imagePath);
-  
-  if(isPost){
+
+  if (isPost) {
     await login();
     await ig.publish.story({
       imageBuffer,
@@ -184,10 +183,10 @@ const postToInstaStory = async (buffer, isPost = false) => {
         //     emoji: '❤',
         //   }),
         // )
-  
+
         //   // mention the first story item
         //   .add(StickerBuilder.mentionReel((await ig.feed.userStory('username').items())[0]).center())
-  
+
         //   // mention the first media on your timeline
         //   .add(StickerBuilder.attachmentFromMedia((await ig.feed.timeline().items())[0]).center())
         // .add(
@@ -201,20 +200,17 @@ const postToInstaStory = async (buffer, isPost = false) => {
         // )
         .build(),
     });
-
   }
-
 };
 
 app.get("/story", async (req: Request, res: Response) => {
-
   // Font.loadDefault();
 
   // // create card
   // Font.loadDefault();
-  const path = __dirname + "/font/Ubuntu-Light.ttf" 
+  const path = __dirname + "/font/Ubuntu-Light.ttf";
 
-  console.log(path)
+  console.log(path);
   // loading font from file would be like this
   await Font.fromFile(path);
   // or synchronously
@@ -228,7 +224,7 @@ app.get("/story", async (req: Request, res: Response) => {
 
   const image = await card.build({ format: "png" });
 
-  fs.writeFileSync('file.jpg', image);
+  fs.writeFileSync("file.jpg", image);
 
   await postToInstaStory(image, false);
 
@@ -263,6 +259,4 @@ app.get("/image", async (req: Request, res: Response) => {
 
 app.listen(port, async () => {
   console.log(`Server is running on http://localhost:${port}`);
-
-  
 });

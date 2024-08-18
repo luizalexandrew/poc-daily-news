@@ -20,6 +20,6 @@
     "resolveJsonModule": true,
     "noUnusedLocals": false,
     "jsx": "react",
-    "allowImportingTsExtensions": true 
+    "allowImportingTsExtensions": true
   }
 }
