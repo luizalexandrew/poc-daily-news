@@ -255,3 +255,19 @@ app.get("/image", async (req: Request, res: Response) => {
 app.listen(port, async () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+
+
+// Contrato RSS
+
+// {
+//   company: 'InfoMoney',
+//   companyLogo: 'url',
+//   category: 'Finanças',
+//   title: 'Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam nesse semana',
+//   description: 'No total, cinco empresas distribuem dividendos e juros sobre capital próprio até sexta-feira (23)'
+//   date: '18/08/2024 06h00 - Atualizado em X',
+//   link: 'https://'
+// }
+
