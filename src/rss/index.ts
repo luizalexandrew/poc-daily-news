@@ -1,37 +1,8 @@
 import Parser from "rss-parser";
 import moment from "moment";
 import { shuffle } from "lodash";
-
-type CustomFeed = { foo: string };
-type CustomItem = { lastBuildDate: string };
-
-enum TypePost {
-  STORY = "story",
-}
-
-type Fonte = {
-  nome: string;
-  url?: string;
-  imagem?: string;
-};
-
-type Noticia = {
-  company: string;
-  companyLogo: string;
-  category: string;
-  title: string;
-  description: string;
-  date: string;
-  link: string;
-  type: string;
-};
-
-const parser = new Parser<CustomFeed, CustomItem>({
-  customFields: {
-    feed: ["foo"],
-    item: ["lastBuildDate"],
-  },
-});
+import { CustomItem, Fonte, Noticia, TypePost } from "./types";
+import { DEFAULT_CATEGORY, DEFAULT_FORMAT_DATE } from "./constants";
 
 const rssResoucers = [
   {
@@ -79,12 +50,12 @@ const rssResoucers = [
 export async function getNoticias() {
   const todasNoticias = await getFeeds();
   const noticiasEmbaralhadas = shuffle(todasNoticias);
-  const noticiasSorteadas = noticiasEmbaralhadas.slice(0, 10);
 
-  return noticiasSorteadas;
+  return noticiasEmbaralhadas.slice(0, 10);
 }
 
 async function getFeeds() {
+  const parser = getParser();
   const noticias: Noticia[] = [];
 
   for (const rss of rssResoucers) {
@@ -92,16 +63,10 @@ async function getFeeds() {
 
     if (!feed || !feed?.items?.length) continue;
 
-    const fonte: Fonte = {
-      nome: rss.nome,
-      url: feed.link,
-      imagem: feed?.image?.url,
-    };
-
     for (const item of feed.items.slice(0, 10)) {
-      const dataPublicacao = moment(item.isoDate).format("DD/MM/YYYY HH[h]mm");
+      const dataPublicacao = moment(item.isoDate).format(DEFAULT_FORMAT_DATE);
       const dataAtualizacao = moment(item?.lastBuildDate).format(
-        "DD/MM/YYYY HH[h]mm"
+        DEFAULT_FORMAT_DATE
       );
 
       const dataFinal = dataAtualizacao
@@ -110,8 +75,10 @@ async function getFeeds() {
 
       const noticia: Noticia = {
         company: rss.nome,
-        companyLogo: fonte.imagem as string,
-        category: item?.categories?.length ? item.categories[0] : "Finanças",
+        companyLogo: feed?.image?.url,
+        category: item?.categories?.length
+          ? item.categories[0]
+          : DEFAULT_CATEGORY,
         title: item.title as string,
         description: item.contentSnippet as string,
         date: dataFinal,
@@ -124,4 +91,12 @@ async function getFeeds() {
   }
 
   return noticias;
+}
+
+function getParser() {
+  return new Parser<CustomItem>({
+    customFields: {
+      item: ["lastBuildDate"],
+    },
+  });
 }
