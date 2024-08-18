@@ -4,10 +4,8 @@ require("dotenv").config();
 const { IgApiClient } = require("instagram-private-api");
 const { get } = require("request-promise");
 
-
 import { StickerBuilder } from "../src/sticker-builder";
 var fs = require("fs");
-
 
 const app = express();
 
@@ -17,9 +15,8 @@ const port: number = 3000;
 
 const ig = new IgApiClient();
 
-
-import { GenerateFile } from './publish'
-
+import { GenerateFile } from "./publish";
+import { getNoticias } from "./rss";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.max(Math.min(value, max), min);
@@ -227,9 +224,6 @@ const postToInstaStory = async (buffer, isPost = false) => {
 // });
 
 app.post("/publish", async (req: Request, res: Response) => {
- 
-  
-  
   const path = await GenerateFile({
     category: req.body.category,
     company: req.body.company,
@@ -239,33 +233,23 @@ app.post("/publish", async (req: Request, res: Response) => {
     date: req.body.date,
     link: req.body.link,
     type: req.body.type,
-    outputPathName: 'file',
-  })
-  
-  console.log('Output file: ', path)
-  
+    outputPathName: "file",
+  });
+
+  console.log("Output file: ", path);
+
   // await postToInstaImage(image, false);
   res.send("Postando no story instagram");
 });
- 
+
+app.get("/rss", async (req: Request, res: Response) => {
+  const feed = await getNoticias();
+
+  return res.json(feed);
+});
+
 // load font, in this case we are loading the bundled font from canvacord
 
 app.listen(port, async () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-
-
-
-// Contrato RSS
-
-// {
-//   "company": "InfoMoney",
-//   "companyLogo": "url",
-//   "category": "Finanças",
-//   "title": "Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam nesse semana",
-//   "description": "No total, cinco empresas distribuem dividendos e juros sobre capital próprio até sexta-feira (23)",
-//   "date": "18/08/2024 06h00 - Atualizado em X",
-//   "link": "https://",
-//   "type": "story"
-// }

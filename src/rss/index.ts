@@ -3,7 +3,11 @@ import moment from "moment";
 import { shuffle } from "lodash";
 
 type CustomFeed = { foo: string };
-type CustomItem = { bar: number };
+type CustomItem = { lastBuildDate: string };
+
+enum TypePost {
+  STORY = "story",
+}
 
 type Fonte = {
   nome: string;
@@ -12,21 +16,20 @@ type Fonte = {
 };
 
 type Noticia = {
-  autor?: string;
-  titulo: string;
+  company: string;
+  companyLogo: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
   link: string;
-  dataPublicacao: string;
-  horaPublicacao: string;
-  categorias?: string[];
-  resumo?: string;
-  conteudo?: string;
-  fonte: Fonte;
+  type: string;
 };
 
 const parser = new Parser<CustomFeed, CustomItem>({
   customFields: {
     feed: ["foo"],
-    item: ["bar"],
+    item: ["lastBuildDate"],
   },
 });
 
@@ -96,16 +99,24 @@ async function getFeeds() {
     };
 
     for (const item of feed.items.slice(0, 10)) {
+      const dataPublicacao = moment(item.isoDate).format("DD/MM/YYYY HH[h]mm");
+      const dataAtualizacao = moment(item?.lastBuildDate).format(
+        "DD/MM/YYYY HH[h]mm"
+      );
+
+      const dataFinal = dataAtualizacao
+        ? `${dataPublicacao} - Atualizado em ${dataAtualizacao}`
+        : dataPublicacao;
+
       const noticia: Noticia = {
-        autor: item.creator,
-        titulo: item.title as string,
+        company: rss.nome,
+        companyLogo: fonte.imagem as string,
+        category: item?.categories?.length ? item.categories[0] : "Finanças",
+        title: item.title as string,
+        description: item.contentSnippet as string,
+        date: dataFinal,
         link: item.link as string,
-        dataPublicacao: moment(item.isoDate).format("DD/MM/YYYY"),
-        horaPublicacao: moment(item.isoDate).format("HH:mm"),
-        categorias: item.categories,
-        resumo: item.contentSnippet,
-        conteudo: item.content,
-        fonte,
+        type: TypePost.STORY,
       };
 
       noticias.push(noticia);
