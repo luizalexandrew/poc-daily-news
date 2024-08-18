@@ -4,12 +4,10 @@ require("dotenv").config();
 const { IgApiClient } = require("instagram-private-api");
 const { get } = require("request-promise");
 
-var fs = require("fs");
 
 import { StickerBuilder } from "../src/sticker-builder";
+var fs = require("fs");
 
-import { Font } from "canvacord";
-import { GreetingsCard } from "./GreetingsCard";
 
 const app = express();
 
@@ -18,6 +16,10 @@ app.use(express.json());
 const port: number = 3000;
 
 const ig = new IgApiClient();
+
+
+import { GenerateFile } from './publish'
+
 
 const clamp = (value: number, min: number, max: number) =>
   Math.max(Math.min(value, max), min);
@@ -225,36 +227,27 @@ const postToInstaStory = async (buffer, isPost = false) => {
 // });
 
 app.post("/publish", async (req: Request, res: Response) => {
-  // Font.loadDefault();
  
-
-  res.send(req.body)
-
-  // // create card
-  // Font.loadDefault();
-  const path = __dirname + "/font/Ubuntu-Light.ttf";
-
-  console.log(path);
-  // loading font from file would be like this
-  await Font.fromFile(path);
-  // or synchronously
-
-  // create card
-  const card = new GreetingsCard("story")
-    .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
-    .setDisplayName("Wumpus")
-    .setType("goodbye")
-    .setMessage("Welcome to the server!");
-
-  const image = await card.build({ format: "jpeg" });
-
-  fs.writeFileSync("file.jpg", image);
-
-  await postToInstaImage(image, false);
-
+  
+  
+  const path = await GenerateFile({
+    category: req.body.category,
+    company: req.body.company,
+    companyLogo: req.body.companyLogo,
+    title: req.body.title,
+    description: req.body.description,
+    date: req.body.date,
+    link: req.body.link,
+    type: req.body.type,
+    outputPathName: 'file',
+  })
+  
+  console.log('Output file: ', path)
+  
+  // await postToInstaImage(image, false);
   res.send("Postando no story instagram");
 });
-
+ 
 // load font, in this case we are loading the bundled font from canvacord
 
 app.listen(port, async () => {
