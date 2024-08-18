@@ -13,6 +13,8 @@ import { GreetingsCard } from "./GreetingsCard";
 
 const app = express();
 
+app.use(express.json());
+
 const port: number = 3000;
 
 const ig = new IgApiClient();
@@ -194,36 +196,39 @@ const postToInstaStory = async (buffer, isPost = false) => {
   }
 };
 
-app.get("/story", async (req: Request, res: Response) => {
+// app.get("/story", async (req: Request, res: Response) => {
+//   // Font.loadDefault();
+
+//   // // create card
+//   // Font.loadDefault();
+//   const path = __dirname + "/font/Ubuntu-Light.ttf";
+
+//   console.log(path);
+//   // loading font from file would be like this
+//   await Font.fromFile(path);
+//   // or synchronously
+
+//   // create card
+//   const card = new GreetingsCard("story")
+//     .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
+//     .setDisplayName("Wumpus")
+//     .setType("goodbye")
+//     .setMessage("Welcome to the server!");
+
+//   const image = await card.build({ format: "jpeg" });
+
+//   fs.writeFileSync("file.jpg", image);
+
+//   await postToInstaStory(image, false);
+
+//   res.send("Postando no story instagram");
+// });
+
+app.post("/publish", async (req: Request, res: Response) => {
   // Font.loadDefault();
+ 
 
-  // // create card
-  // Font.loadDefault();
-  const path = __dirname + "/font/Ubuntu-Light.ttf";
-
-  console.log(path);
-  // loading font from file would be like this
-  await Font.fromFile(path);
-  // or synchronously
-
-  // create card
-  const card = new GreetingsCard("story")
-    .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
-    .setDisplayName("Wumpus")
-    .setType("goodbye")
-    .setMessage("Welcome to the server!");
-
-  const image = await card.build({ format: "jpeg" });
-
-  fs.writeFileSync("file.jpg", image);
-
-  await postToInstaStory(image, false);
-
-  res.send("Postando no story instagram");
-});
-
-app.get("/image", async (req: Request, res: Response) => {
-  // Font.loadDefault();
+  res.send(req.body)
 
   // // create card
   // Font.loadDefault();
@@ -262,12 +267,12 @@ app.listen(port, async () => {
 // Contrato RSS
 
 // {
-//   company: 'InfoMoney',
-//   companyLogo: 'url',
-//   category: 'Finanças',
-//   title: 'Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam nesse semana',
-//   description: 'No total, cinco empresas distribuem dividendos e juros sobre capital próprio até sexta-feira (23)'
-//   date: '18/08/2024 06h00 - Atualizado em X',
-//   link: 'https://'
+//   "company": "InfoMoney",
+//   "companyLogo": "url",
+//   "category": "Finanças",
+//   "title": "Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam nesse semana",
+//   "description": "No total, cinco empresas distribuem dividendos e juros sobre capital próprio até sexta-feira (23)",
+//   "date": "18/08/2024 06h00 - Atualizado em X",
+//   "link": "https://",
+//   "type": "story"
 // }
-
