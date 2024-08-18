@@ -20,27 +20,35 @@ export class GreetingsCard extends Builder<Props> {
     switch (value) {
       case 'story':
         super(1080, 1920);
+        this.setSize('story')
         break;
       case 'post':
         super(1080, 1080);
+        this.setSize('post')
         break;
       case 'postlg':
         super(1080, 608);
+        this.setSize('postlg')
         break;
       default:
         super(1080, 608);
         break;
     }
 
-    this.bootstrap({
-      displayName: "",
-      type: "welcome",
-      avatar: "",
-      message: "",
-      size: "story"
-    });
+    // this.bootstrap({
+    //   displayName: "",
+    //   type: "welcome",
+    //   avatar: "",
+    //   message: "",
+    //   size: this.s
+    // });
   }
 
+  setSize(value: "story" | "post" | "postlg") {
+    this.options.set("size", value);
+    return this;
+  }
+  
   setDisplayName(value: string) {
     this.options.set("displayName", value);
     return this;
@@ -63,7 +71,7 @@ export class GreetingsCard extends Builder<Props> {
 
   // this is where you have to define output ui
   async render() {
-    const { type, displayName, avatar, message } = this.options.getOptions();
+    const { type, displayName, avatar, message, size } = this.options.getOptions();
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
@@ -130,9 +138,9 @@ export class GreetingsCard extends Builder<Props> {
 
 
             <h1 className="text-6xl text-white px-[20px] font-black">Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam</h1>
-            <h3 className="text-4xl text-white px-[20px]">No total, cinco empresas distribuem dividendos e juros sobre capital próprio até a sexta-feira (23)</h3>
+            <h3 className="text-4xl text-white px-[20px]"> {size} No total, cinco empresas distribuem dividendos e juros sobre capital próprio até a sexta-feira (23)</h3>
             <h4 className="text-3xl text-white px-[20px]">18/08/2024 06h00 • Atualizado 2 dias atrás</h4>
-            <div className="flex items-center p-10 bg-[#30363d] rounded-3xl	 mb-[200px] ml-[10px]" >
+            <div className={`flex items-center p-10 bg-[#30363d] rounded-3xl ${size === 'story' ? 'mb-[200px]' : 'mb-[10px]'} mx-[10px]`} >
               <div className="flex items-center bg-[#FFFFFF] rounded-xl px-[20px]	 h-[100%]">
                 <img
                   src={logo.toDataURL()}

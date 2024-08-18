@@ -245,7 +245,7 @@ app.get("/image", async (req: Request, res: Response) => {
 
   fs.writeFileSync("file.jpg", image);
 
-  await postToInstaImage(image, true);
+  await postToInstaImage(image, false);
 
   res.send("Postando no story instagram");
 });
