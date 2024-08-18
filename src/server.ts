@@ -43,10 +43,6 @@ async function login() {
 }
 
 const postToInstaImage = async (buffer, isPost = false) => {
-  let path = "file.jpg";
-
-  fs.writeFileSync(path, buffer);
-
   // let file = fs.readFileSync('file.jpg');
 
   // const imageBuffer = await get({
@@ -62,38 +58,39 @@ const postToInstaImage = async (buffer, isPost = false) => {
 
   if (isPost) {
     await login();
+    const path = "file.jpg";
+    // const { latitude, longitude, searchQuery } = {
+    //   latitude: 0.0,
+    //   longitude: 0.0,
+    //   // not required
+    //   searchQuery: "place",
+    // };
 
-    const { latitude, longitude, searchQuery } = {
-      latitude: 0.0,
-      longitude: 0.0,
-      // not required
-      searchQuery: "place",
-    };
-
-    /**
-     * Get the place
-     * If searchQuery is undefined, you'll get the nearest places to your location
-     * this is the same as in the upload (-configure) dialog in the app
-     */
-    const locations = await ig.search.location(
-      latitude,
-      longitude,
-      searchQuery
-    );
+    // /**
+    //  * Get the place
+    //  * If searchQuery is undefined, you'll get the nearest places to your location
+    //  * this is the same as in the upload (-configure) dialog in the app
+    //  */
+    // const locations = await ig.search.location(
+    //   latitude,
+    //   longitude,
+    //   searchQuery
+    // );
     /**
      * Get the first venue
      * In the real world you would check the returned locations
      */
-    const mediaLocation = locations[0];
-    console.log(mediaLocation);
+    // const mediaLocation = locations[0];
+    // console.log(mediaLocation);
 
     const publishResult = await ig.publish.photo({
       // read the file into a Buffer
       file: fs.readFileSync(path),
       // optional, default ''
       caption: "my caption",
+      ds_user_id: "daily.fin.dev",
       // optional
-      location: mediaLocation,
+      // location: mediaLocation,
       // optional
       usertags: {
         in: [
@@ -108,30 +105,21 @@ const postToInstaImage = async (buffer, isPost = false) => {
 };
 
 const postToInstaStory = async (buffer, isPost = false) => {
-  const imagePath = __dirname + "/../file.jpg";
-
-  console.log(imagePath);
-  console.log("/home/luizalexandrew/Developer/git/poc-daily-news/file.jpg");
-
-  // const imageBuffer = await get({
-  //   url: imagePath,
-  //   encoding: null,
-  // });
-
-  let imageBuffer = fs.readFileSync(imagePath);
-
   if (isPost) {
     await login();
+    const path = "file.jpg";
+    const file = fs.readFileSync(path);
+
     await ig.publish.story({
-      imageBuffer,
+      file,
       // this creates a new config
       stickerConfig: new StickerBuilder()
         // these are all supported stickers
-        // .add(
-        //   StickerBuilder.hashtag({
-        //     tagName: 'insta',
-        //   }).center(),
-        // )
+        .add(
+          StickerBuilder.hashtag({
+            tagName: "dailyFin",
+          }).center()
+        )
         // .add(
         //   StickerBuilder.mention({
         //     userId: ig.state.cookieUserId,
@@ -229,31 +217,37 @@ app.get("/story", async (req: Request, res: Response) => {
 
   fs.writeFileSync("file.jpg", image);
 
-  // await postToInstaStory(image, true);
+  await postToInstaStory(image, false);
 
   res.send("Postando no story instagram");
 });
 
 app.get("/image", async (req: Request, res: Response) => {
+  // Font.loadDefault();
+
+  // // create card
+  // Font.loadDefault();
   const path = __dirname + "/font/Ubuntu-Light.ttf";
 
   console.log(path);
   // loading font from file would be like this
   await Font.fromFile(path);
   // or synchronously
- 
+
   // create card
-  const card = new GreetingsCard("story")
+  const card = new GreetingsCard("post")
     .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
     .setDisplayName("Wumpus")
-    .setType("welcome")
+    .setType("goodbye")
     .setMessage("Welcome to the server!");
 
-  const image = await card.build({ format: "png" });
+  const image = await card.build({ format: "jpeg" });
+
+  fs.writeFileSync("file.jpg", image);
 
   await postToInstaImage(image, true);
 
-  res.send("Postando no imagem instagram");
+  res.send("Postando no story instagram");
 });
 
 // load font, in this case we are loading the bundled font from canvacord

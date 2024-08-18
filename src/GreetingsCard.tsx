@@ -132,7 +132,7 @@ export class GreetingsCard extends Builder<Props> {
             <h1 className="text-6xl text-white px-[20px] font-black">Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam</h1>
             <h3 className="text-4xl text-white px-[20px]">No total, cinco empresas distribuem dividendos e juros sobre capital próprio até a sexta-feira (23)</h3>
             <h4 className="text-3xl text-white px-[20px]">18/08/2024 06h00 • Atualizado 2 dias atrás</h4>
-            <div className="flex items-center p-10 bg-[#30363d] rounded-3xl	 mb-[100px] ml-[10px]" >
+            <div className="flex items-center p-10 bg-[#30363d] rounded-3xl	 mb-[200px] ml-[10px]" >
               <div className="flex items-center bg-[#FFFFFF] rounded-xl px-[20px]	 h-[100%]">
                 <img
                   src={logo.toDataURL()}
