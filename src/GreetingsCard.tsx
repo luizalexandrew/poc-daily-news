@@ -52,12 +52,13 @@ export class GreetingsCard extends Builder<Props> {
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage(avatar);
-    const post = await loadImage("https://blog.cielo.com.br/wp-content/uploads/2019/03/quais-sao-as-taxas-da-cielo.jpg");
+    const post = await loadImage(
+      "https://blog.cielo.com.br/wp-content/uploads/2019/03/quais-sao-as-taxas-da-cielo.jpg"
+    );
 
     return (
       // <div className="h-full w-full flex flex-col  items-center justify-center w-[1080px] bg-[#2B2F35AA] rounded-xl h-[1000px]">
       <div className="flex flex-col w-[1080px] bg-[#2B2F35AA] h-[1920px] bg-[#2B2F35]">
-
         <div className="flex items-start p-10 bg-[#FFFF00] h-[170px]">
           <img
             src={image.toDataURL()}
@@ -71,7 +72,13 @@ export class GreetingsCard extends Builder<Props> {
             <p className="text-gray-300 text-3xl m-0">{message}</p>
           </div>
         </div>
-        <div className="flex bg-contain bg-center" style={`background-image: url(${post})`}>
+        <div
+          className={`flex bg-contain bg-center w-full h-full bg-[url(${post.toDataURL()})]`}
+          style={{
+            backgroundImage: `url(${post.toDataURL()})`,
+            backgroundSize: "cover",
+          }}
+        >
           {/* <img
             src={post.toDataURL()}
             className="flex h-[100px] w-[100px] rounded-full"
@@ -90,5 +97,5 @@ export class GreetingsCard extends Builder<Props> {
 }
 
 export default {
-  GreetingsCard
-}
+  GreetingsCard,
+};
