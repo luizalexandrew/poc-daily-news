@@ -216,7 +216,7 @@ app.get("/story", async (req: Request, res: Response) => {
   // or synchronously
 
   // create card
-  const card = new GreetingsCard()
+  const card = new GreetingsCard("story")
     .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
     .setDisplayName("Wumpus")
     .setType("goodbye")
@@ -242,7 +242,7 @@ app.get("/image", async (req: Request, res: Response) => {
   // or synchronously
 
   // create card
-  const card = new GreetingsCard()
+  const card = new GreetingsCard("story")
     .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
     .setDisplayName("Wumpus")
     .setType("welcome")

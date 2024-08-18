@@ -11,18 +11,33 @@ interface Props {
   type: "welcome" | "goodbye";
   avatar: string;
   message: string;
+  size: "story" | "post" | "postlg";
 }
 
 export class GreetingsCard extends Builder<Props> {
-  constructor() {
-    // set width and height
-    super(1080, 1920);
-    // initialize props
+  constructor(value: "story" | "post" | "postlg") {
+    
+    switch (value) {
+      case 'story':
+        super(1080, 1920);
+        break;
+      case 'post':
+        super(1080, 1080);
+        break;
+      case 'postlg':
+        super(1080, 608);
+        break;
+      default:
+        super(1080, 608);
+        break;
+    }
+
     this.bootstrap({
       displayName: "",
       type: "welcome",
       avatar: "",
       message: "",
+      size: "story"
     });
   }
 
@@ -76,14 +91,14 @@ export class GreetingsCard extends Builder<Props> {
               left: 0,
               display: 'flex',
               position: 'absolute',
-              height: '1920px',
+              height: `${this.height}px`,
               minWidth: '100%',
               transform: 'translateX(-540px)'
             }}
           />
         </div>
 
-        <div className="flex flex-col w-[1080px] h-[1920px] z-10">
+        <div className={`flex flex-col w-[${this.width}px] h-[${this.height}px] z-10`}>
 
           <div
             className="flex flex-col bg-[#000000]"
