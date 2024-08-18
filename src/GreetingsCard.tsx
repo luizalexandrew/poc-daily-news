@@ -57,29 +57,47 @@ export class GreetingsCard extends Builder<Props> {
     );
 
     return (
-      // <div className="h-full w-full flex flex-col  items-center justify-center w-[1080px] bg-[#2B2F35AA] rounded-xl h-[1000px]">
-      <div className="flex flex-col w-[1080px] bg-[#2B2F35AA] h-[1920px] bg-[#2B2F35]">
-        <div className="flex items-start p-10 bg-[#FFFF00] h-[170px]">
+      <div>
+        <div className="bg-[#2B2F35]" style={{
+          top: 0,
+          left: 0,
+          display: 'flex',
+          position: 'absolute',
+          width: '100%'
+        }}>
           <img
-            src={image.toDataURL()}
-            className="flex h-[100px] w-[100px] rounded-full"
+            src={post.toDataURL()}
+            style={{
+              top: 0,
+              left: 0,
+              display: 'flex',
+              position: 'absolute',
+              height: '1920px',
+              minWidth: '100%',
+              transform: 'translateX(-540px)'
+            }}
           />
-          <div className="flex flex-col ml-6">
-            <h1 className="text-5xl text-white font-bold m-0">
-              {type === "welcome" ? "Welcome" : "Olocooo"},{" "}
-              <span className="text-blue-500">{displayName}!</span>
-            </h1>
-            <p className="text-gray-300 text-3xl m-0">{message}</p>
-          </div>
         </div>
-        <div
-          className={`flex bg-contain bg-center w-full h-full bg-[url(${post.toDataURL()})]`}
-          style={{
-            backgroundImage: `url(${post.toDataURL()})`,
-            backgroundSize: "cover",
-          }}
-        >
-          {/* <img
+
+        <div className="flex flex-col w-[1080px] h-[1920px] z-10">
+          <div className="flex items-start p-10 bg-[#FFFF00] h-[170px]">
+            <img
+              src={image.toDataURL()}
+              className="flex h-[100px] w-[100px] rounded-full"
+            />
+            <div className="flex flex-col ml-6">
+              <h1 className="text-5xl text-white font-bold m-0">
+                {type === "welcome" ? "Welcome" : "Olocooo"},{" "}
+                <span className="text-blue-500">{displayName}!</span>
+              </h1>
+              <p className="text-gray-300 text-3xl m-0">{message}</p>
+            </div>
+          </div>
+          <div
+            className={`flex`}
+
+          >
+            {/* <img
             src={post.toDataURL()}
             className="flex h-[100px] w-[100px] rounded-full"
           />
@@ -90,7 +108,9 @@ export class GreetingsCard extends Builder<Props> {
             </h1>
             <p className="text-gray-300 text-3xl m-0">{message}</p>
           </div> */}
+          </div>
         </div>
+        
       </div>
     );
   }
