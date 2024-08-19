@@ -1,7 +1,7 @@
 import Parser from "rss-parser";
 import moment from "moment";
 import { shuffle } from "lodash";
-import { CustomItem, Fonte, Noticia, TypePost } from "./types";
+import { CustomItem, Noticia, TypePost } from "./types";
 import { DEFAULT_CATEGORY, DEFAULT_FORMAT_DATE } from "./constants";
 
 const rssResoucers = [
@@ -47,16 +47,16 @@ const rssResoucers = [
   },
 ];
 
-export async function getNoticias() {
-  const todasNoticias = await getFeeds();
-  const noticiasEmbaralhadas = shuffle(todasNoticias);
+export async function getNews() {
+  const allNews = await getLastNews();
+  const shuffledNews = shuffle(allNews);
 
-  return noticiasEmbaralhadas.slice(0, 10);
+  return shuffledNews.slice(0, 10);
 }
 
-async function getFeeds() {
+async function getLastNews() {
   const parser = getParser();
-  const noticias: Noticia[] = [];
+  const news: Noticia[] = [];
 
   for (const rss of rssResoucers) {
     const feed = await parser.parseURL(rss.url);
@@ -86,11 +86,11 @@ async function getFeeds() {
         type: TypePost.STORY,
       };
 
-      noticias.push(noticia);
+      news.push(noticia);
     }
   }
 
-  return noticias;
+  return news;
 }
 
 function getParser() {

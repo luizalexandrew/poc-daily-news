@@ -5,12 +5,6 @@ export enum TypePost {
   STORY = "story",
 }
 
-export type Fonte = {
-  nome: string;
-  url?: string;
-  imagem?: string;
-};
-
 export type Noticia = {
   company: string;
   companyLogo: string;

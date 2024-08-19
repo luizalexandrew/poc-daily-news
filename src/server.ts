@@ -16,7 +16,6 @@ const port: number = 3000;
 const ig = new IgApiClient();
 
 import { GenerateFile } from "./publish";
-import { getNoticias } from "./rss";
 
 const clamp = (value: number, min: number, max: number) =>
   Math.max(Math.min(value, max), min);
@@ -240,12 +239,6 @@ app.post("/publish", async (req: Request, res: Response) => {
 
   // await postToInstaImage(image, false);
   res.send("Postando no story instagram");
-});
-
-app.get("/rss", async (req: Request, res: Response) => {
-  const feed = await getNoticias();
-
-  return res.json(feed);
 });
 
 // load font, in this case we are loading the bundled font from canvacord
