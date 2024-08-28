@@ -22,10 +22,15 @@ export const GenerateFile = async (dataFile: DataFile) => {
   const outputPath = `${dataFile.outputPathName}.jpg`
 
   const card = new GreetingsCard(dataFile.type)
-    .setAvatar("https://cdn.discordapp.com/embed/avatars/0.png")
-    .setDisplayName("Wumpus")
-    .setType("goodbye")
-    .setMessage("Welcome to the server!");
+    .setCompany(dataFile.company)
+    .setCompanyLogo(dataFile.companyLogo)
+    .setCategory(dataFile.category)
+    .setTitle(dataFile.title)
+    .setDescription(dataFile.description)
+    .setDate(dataFile.date)
+    .setLink(dataFile.link)
+    .setType(dataFile.type)
+    .setOutputPathName(dataFile.outputPathName);
 
   const image = await card.build({ format: "jpeg" });
 
