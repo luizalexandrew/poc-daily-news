@@ -98,7 +98,7 @@ export class GreetingsCard extends Builder<Props> {
 
   // this is where you have to define output ui
   async render() {
-    const { type } = this.options.getOptions();
+    const { company, companyLogo, category, title, description, date, link, type} = this.options.getOptions();
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
@@ -107,7 +107,7 @@ export class GreetingsCard extends Builder<Props> {
     );
 
     const logo = await loadImage(
-      "https://logodownload.org/wp-content/uploads/2019/09/infomoney-logo.png"
+      companyLogo
     );
 
     return (
@@ -163,28 +163,25 @@ export class GreetingsCard extends Builder<Props> {
               </div>
             </div>
 
-
-            <h1 className="text-6xl text-white px-[20px] font-black">Dividendos da semana: Petrobras, Copasa e Localiza estão entre as empresas que pagam</h1>
-            <h3 className="text-4xl text-white px-[20px]"> {type} No total, cinco empresas distribuem dividendos e juros sobre capital próprio até a sexta-feira (23)</h3>
-            <h4 className="text-3xl text-white px-[20px]">18/08/2024 06h00 • Atualizado 2 dias atrás</h4>
+            <h1 className="text-6xl text-white px-[20px] font-black">{title}</h1>
+            <h3 className="text-4xl text-white px-[20px]">{description}</h3>
+            <h4 className="text-3xl text-white px-[20px]">{date}</h4>
             <div className={`flex items-center p-10 bg-[#30363d] rounded-3xl ${type === 'story' ? 'mb-[200px]' : 'mb-[10px]'} mx-[10px]`} >
               <div className="flex items-center bg-[#FFFFFF] rounded-xl px-[20px]	 h-[100%]">
                 <img
                   src={logo.toDataURL()}
                   className="flex items-center w-[200px]"
                 />
-
               </div>
               <div className="flex flex-col ml-6">
                 <h1 className="text-5xl text-white font-bold m-0">
-                  <span className="text-blue-500">{"Infomoney"}</span>
+                  <span className="text-blue-500">{company}</span>
                 </h1>
-                <p className="text-gray-300 text-3xl m-0">{"Finanças"}</p>
+                <p className="text-gray-300 text-3xl m-0">{category}</p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     );
   }
