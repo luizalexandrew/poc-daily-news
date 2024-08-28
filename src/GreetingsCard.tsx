@@ -14,6 +14,7 @@ interface Props {
   description: string,
   date: string,
   link: string,
+  postPhoto: string,
   type: "story" | "post" | "postlg",
   outputPathName: string,
 }
@@ -84,6 +85,11 @@ export class GreetingsCard extends Builder<Props> {
     return this;
   }
 
+  setPostPhoto(value: string) {
+    this.options.set("postPhoto", value);
+    return this;
+  }
+
   setCompany(value: string) {
     this.options.set("company", value);
     return this;
@@ -94,21 +100,20 @@ export class GreetingsCard extends Builder<Props> {
     return this;
   }
 
-
-
   // this is where you have to define output ui
   async render() {
-    const { company, companyLogo, category, title, description, date, link, type} = this.options.getOptions();
+    const { company, companyLogo, category, title, description, date, postPhoto, link, type} = this.options.getOptions();
+
+
+    console.log(postPhoto)
+    console.log(postPhoto)
+    console.log(postPhoto)
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
-    const post = await loadImage(
-      "https://www.infomoney.com.br/wp-content/uploads/2024/06/2024-06-06T200313Z_1_LYNXMPEK550T9_RTROPTP_4_META-WHATSAPP-BRAZIL.jpg"
-    );
+    const post = await loadImage("https://kinsta.com/pt/wp-content/uploads/sites/3/2023/10/ai-powered-image-generator-app-with-react-dall-e-1.jpg");
 
-    const logo = await loadImage(
-      companyLogo
-    );
+    const logo = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
 
     return (
       <div>

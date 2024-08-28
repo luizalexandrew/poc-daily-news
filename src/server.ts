@@ -229,6 +229,7 @@ app.post("/publish", async (req: Request, res: Response) => {
     companyLogo: req.body.companyLogo,
     title: req.body.title,
     description: req.body.description,
+    postPhoto: req.body.postPhoto,
     date: req.body.date,
     link: req.body.link,
     type: req.body.type,

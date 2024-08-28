@@ -4,15 +4,16 @@ import { GreetingsCard } from "./GreetingsCard";
 
 
 type DataFile = {
-  company: string;
-  companyLogo: string;
-  category: string;
-  title: string;
-  description: string;
-  date: string;
-  link: string;
-  type: "story" | "post" | "postlg";
-  outputPathName: string;
+  category: string,
+  company: string,
+  companyLogo: string,
+  title: string,
+  description: string,
+  date: string,
+  link: string,
+  postPhoto: string,
+  type: "story" | "post" | "postlg",
+  outputPathName: string,
 };
 
 export const GenerateFile = async (dataFile: DataFile) => {
@@ -30,6 +31,7 @@ export const GenerateFile = async (dataFile: DataFile) => {
     .setDate(dataFile.date)
     .setLink(dataFile.link)
     .setType(dataFile.type)
+    .setPostPhoto(dataFile.postPhoto)
     .setOutputPathName(dataFile.outputPathName);
 
   const image = await card.build({ format: "jpeg" });
