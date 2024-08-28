@@ -111,9 +111,9 @@ export class GreetingsCard extends Builder<Props> {
 
     // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
-    const post = await loadImage("https://kinsta.com/pt/wp-content/uploads/sites/3/2023/10/ai-powered-image-generator-app-with-react-dall-e-1.jpg");
+    const post = await loadImage(postPhoto);
 
-    const logo = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
+    const logo = await loadImage(companyLogo);
 
     return (
       <div>
