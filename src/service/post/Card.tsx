@@ -96,8 +96,13 @@ export class Card extends Builder<CardProps> {
 
     const image = await loadImage(process.env.COMPANY_LOGO);
     const post = await loadImage(postPhoto);
+    let logo
+    if(companyLogo){
+      logo = await loadImage(companyLogo);
+    }else{
+      logo = await loadImage(process.env.COMPANY_DEFAULT);
+    }
 
-    const logo = await loadImage(companyLogo);
 
     return (
       <div>

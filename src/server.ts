@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import { GenerateFile } from "./service/post";
 import { Publish } from "./service/publish";
 import { CreateDir } from "./util/path";
+import {getNews} from './rss'
 
 require("dotenv").config();
 
@@ -9,31 +10,52 @@ const port: number = parseInt(process.env.PORT) || 4000;
 const app = express();
 app.use(express.json());
 
-app.post("/publish", async (req: Request, res: Response) => {
-  const outputFile = `output/${req.body.company}/${req.body.category}/${req.body.title}`;
-
-  CreateDir(outputFile);
+const getRandomArbitrary = (min, max)=>{
+  return Math.random() * (max - min) + min;
+}
  
-  const path = await GenerateFile({
-    category: req.body.category,
-    company: req.body.company,
-    companyLogo: req.body.companyLogo,
-    title: req.body.title,
-    description: req.body.description,
-    postPhoto: req.body.postPhoto,
-    date: req.body.date,
-    link: req.body.link,
-    type: req.body.type,
-    outputPathName: `${outputFile}/${req.body.type}`,
-  });
+app.post("/publish", async (req: Request, res: Response) => {
 
-  console.log("Output file: ", path);
+  const noticias = await getNews();
 
-  const publishResponse = await Publish(req.body.platform, req.body.type, path)
+  for (let index = 0; index < noticias.length; index++) {
 
-  console.log(publishResponse)
 
-  res.send(`Post [${req.body.title}] on Instagram [${publishResponse.isSuccess} - ${publishResponse.message}]`);
+    const noticia = noticias[index];
+
+    const outputFile = `output/${noticia.company}/${noticia.category}/${noticia.title}`;
+
+    CreateDir(outputFile);
+
+    const type = getRandomArbitrary(0, 100) > 50 ? "post" : "story";
+
+    console.log(`------------- Publicação Instagram [${index + 1}] - ${type}`)
+    console.log(noticia)
+ 
+    const path = await GenerateFile({
+      category: noticia.category,
+      company: noticia.company,
+      companyLogo: noticia.companyLogo,
+      title: noticia.title,
+      description: noticia.description,
+      postPhoto: noticia.postPhoto,
+      date: noticia.date,
+      link: noticia.link,
+      type: type,
+      outputPathName: `${outputFile}/${type}`,
+    });
+  
+    console.log("Output file: ", path);
+  
+    const publishResponse = await Publish(req.body.platform, type, path)
+  
+
+
+    
+  }
+
+  res.send(`Success`);
+
 });
 
 app.listen(port, async () => {

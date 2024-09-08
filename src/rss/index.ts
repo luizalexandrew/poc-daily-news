@@ -73,7 +73,7 @@ export async function getNews() {
 
   const shuffledNews = shuffle(allNews);
 
-  const top10News = shuffledNews.slice(0, 10);
+  const top10News = shuffledNews.slice(0, 2);
 
   await injectPostPhoto(top10News);
 
