@@ -12,12 +12,17 @@ import {
 } from "./sticker-builder";
 
 const ig = new IgApiClient();
+let isLogin = false
 
 async function login() {
-  ig.state.generateDevice(process.env.IG_USERNAME);
-  ig.state.proxyUrl = process.env.IG_PROXY;
-  await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
+  if(!isLogin){
+    ig.state.generateDevice(process.env.IG_USERNAME);
+    ig.state.proxyUrl = process.env.IG_PROXY;
+    await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
+    isLogin = true
+  }
 }
+
 
 const IS_POST = Boolean(process.env.IS_PUBLISH) || false;
 

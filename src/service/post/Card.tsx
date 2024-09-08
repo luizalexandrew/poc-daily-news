@@ -7,6 +7,9 @@
 import { JSX, Builder, loadImage } from "canvacord";
 import {CardProps} from '../../types/Card'
 
+require("dotenv").config();
+
+
 
 export class Card extends Builder<CardProps> {
   constructor(value: "story" | "post" | "postlg") {
@@ -91,7 +94,7 @@ export class Card extends Builder<CardProps> {
   async render() {
     const { company, companyLogo, category, title, description, date, postPhoto, link, type} = this.options.getOptions();
 
-    const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
+    const image = await loadImage(process.env.COMPANY_LOGO);
     const post = await loadImage(postPhoto);
 
     const logo = await loadImage(companyLogo);
@@ -143,7 +146,7 @@ export class Card extends Builder<CardProps> {
               />
               <div className="flex flex-col ml-6">
                 <h1 className="text-5xl text-white font-bold m-0">
-                  <span className="text-blue-500">{"Daily.fin"}</span>
+                  <span className="text-blue-500">{"HubNews.finance"}</span>
                 </h1>
                 <p className="text-gray-300 text-3xl m-0">{"Seu feed de notícias"}</p>
               </div>
