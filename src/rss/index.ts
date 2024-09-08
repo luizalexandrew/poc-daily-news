@@ -3,6 +3,7 @@ import moment from "moment";
 import { shuffle } from "lodash";
 import { CustomItem, Noticia, TypePost } from "./types";
 import { DEFAULT_CATEGORY, DEFAULT_FORMAT_DATE } from "./constants";
+import { findImage } from "./findImage";
 
 const rssResoucers = [
   {
@@ -49,9 +50,22 @@ const rssResoucers = [
 
 export async function getNews() {
   const allNews = await getLastNews();
+
   const shuffledNews = shuffle(allNews);
 
-  return shuffledNews.slice(0, 10);
+  const top10News = shuffledNews.slice(0, 10);
+
+  await injectPostPhoto(top10News);
+
+  return top10News;
+}
+
+async function injectPostPhoto(news: Noticia[]) {
+  for (const noticia of news) {
+    const postPhoto = await getImageFromTitle(noticia.title);
+
+    noticia.postPhoto = postPhoto;
+  }
 }
 
 async function getLastNews() {
@@ -84,6 +98,7 @@ async function getLastNews() {
         date: dataFinal,
         link: item.link as string,
         type: TypePost.STORY,
+        postPhoto: null,
       };
 
       news.push(noticia);
@@ -91,6 +106,16 @@ async function getLastNews() {
   }
 
   return news;
+}
+
+async function getImageFromTitle(title: string) {
+  try {
+    const imageUrl = await findImage(title);
+
+    return imageUrl;
+  } catch (error) {
+    return null;
+  }
 }
 
 function getParser() {

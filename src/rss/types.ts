@@ -1,5 +1,7 @@
 export type CustomFeed = { foo: string };
-export type CustomItem = { lastBuildDate: string };
+export type CustomItem = {
+  lastBuildDate: string;
+};
 
 export enum TypePost {
   STORY = "story",
@@ -14,4 +16,5 @@ export type Noticia = {
   date: string;
   link: string;
   type: string;
+  postPhoto: string | null;
 };
