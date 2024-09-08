@@ -25,6 +25,8 @@ const rssResoucers = [
   {
     nome: "Valor Econômico",
     url: "https://pox.globo.com/rss/valor",
+    companyLogo:
+      "https://s3.glbimg.com/v1/AUTH_1b264e8ce06649ae85acee5d38e32f34/images/novo_logo_valor_economico.png",
   },
   {
     nome: "Suno Notícias",
@@ -89,7 +91,7 @@ async function getLastNews() {
 
       const noticia: Noticia = {
         company: rss.nome,
-        companyLogo: feed?.image?.url,
+        companyLogo: rss?.companyLogo || feed?.image?.url,
         category: item?.categories?.length
           ? item.categories[0]
           : DEFAULT_CATEGORY,
