@@ -1,9 +1,9 @@
-import Parser from "rss-parser";
-import moment from "moment";
 import { shuffle } from "lodash";
-import { CustomItem, Noticia, TypePost } from "./types";
+import moment from "moment";
+import Parser from "rss-parser";
 import { DEFAULT_CATEGORY, DEFAULT_FORMAT_DATE } from "./constants";
 import { findImage } from "./findImage";
+import { CustomItem, Noticia } from "./types";
 
 const rssResoucers = [
   {
@@ -97,7 +97,6 @@ async function getLastNews() {
         description: item.contentSnippet as string,
         date: dataFinal,
         link: item.link as string,
-        type: TypePost.STORY,
         postPhoto: null,
       };
 

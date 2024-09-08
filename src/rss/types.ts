@@ -3,10 +3,6 @@ export type CustomItem = {
   lastBuildDate: string;
 };
 
-export enum TypePost {
-  STORY = "story",
-}
-
 export type Noticia = {
   company: string;
   companyLogo: string;
@@ -15,6 +11,5 @@ export type Noticia = {
   description: string;
   date: string;
   link: string;
-  type: string;
   postPhoto: string | null;
 };
