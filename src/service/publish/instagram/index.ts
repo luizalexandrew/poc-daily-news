@@ -19,9 +19,10 @@ async function login() {
   await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
 }
 
+const IS_POST = Boolean(process.env.IS_PUBLISH) || false
+
 export const PostToInstaImage = async (
   buffer,
-  isPost = false
 ): Promise<ProcessProps> => {
   // let file = fs.readFileSync('file.jpg');
 
@@ -36,7 +37,7 @@ export const PostToInstaImage = async (
   //   caption: "Really nice photo from the internet!", // nice caption (optional)
   // });
 
-  if (isPost) {
+  if (IS_POST) {
     await login();
     const path = "file.jpg";
     // const { latitude, longitude, searchQuery } = {
@@ -94,9 +95,8 @@ export const PostToInstaImage = async (
 
 export const PostToInstaStory = async (
   buffer,
-  isPost = false
 ): Promise<ProcessProps> => {
-  if (isPost) {
+  if (IS_POST) {
     await login();
     const path = "file.jpg";
     const file = fs.readFileSync(path);
