@@ -77,7 +77,15 @@ export const PostToInstaImage = async (buffer, isPost = false) => {
       },
     });
 
-    console.log(publishResult);
+    return {
+      isError: true,
+      message: "Publish on Instagram"
+    };
+  }else{
+    return {
+      isError: true,
+      message: "Publish on Instagram [disabled]"
+    };
   }
 };
 
@@ -168,6 +176,18 @@ export const PostToInstaStory = async (buffer, isPost = false) => {
         // )
         .build(),
     });
+
+    return {
+      isError: true,
+      message: "Publish on Instagram"
+    };
+
+
+  }else{
+    return {
+      isError: true,
+      message: "Publish on Instagram [disabled]"
+    };
   }
 };
 

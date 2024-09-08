@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { GenerateFile } from "./service/post";
-import { PostToInstaImage, PostToInstaStory } from "./service/instagram";
+import { Publish } from "./service/publish";
 import { CreateDir } from "./util/path";
 
 require("dotenv").config();
@@ -24,16 +24,16 @@ app.post("/publish", async (req: Request, res: Response) => {
     date: req.body.date,
     link: req.body.link,
     type: req.body.type,
-    outputPathName: `${outputFile}/file`,
+    outputPathName: `${outputFile}/${req.body.type}`,
   });
 
   console.log("Output file: ", path);
 
-  if (false !== false) {
-    await PostToInstaImage(path, false);
-  }
+  const publishResponse = await Publish(req.body.platform, req.body.type, path)
 
-  res.send(`Post [${req.body.title}] on Instagram`);
+  console.log(publishResponse)
+
+  res.send(`Post [${req.body.title}] on Instagram [${publishResponse.isError} - ${publishResponse.message}]`);
 });
 
 app.listen(port, async () => {
