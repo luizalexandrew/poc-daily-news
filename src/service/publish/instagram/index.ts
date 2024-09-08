@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const { IgApiClient } = require("instagram-private-api");
 const { get } = require("request-promise");
+import { ProcessProps } from "../../../types/Process";
 
 import {
   StickerBuilder,
@@ -12,14 +13,16 @@ import {
 
 const ig = new IgApiClient();
 
-
 async function login() {
   ig.state.generateDevice(process.env.IG_USERNAME);
   ig.state.proxyUrl = process.env.IG_PROXY;
   await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
 }
 
-export const PostToInstaImage = async (buffer, isPost = false) => {
+export const PostToInstaImage = async (
+  buffer,
+  isPost = false
+): Promise<ProcessProps> => {
   // let file = fs.readFileSync('file.jpg');
 
   // const imageBuffer = await get({
@@ -79,17 +82,20 @@ export const PostToInstaImage = async (buffer, isPost = false) => {
 
     return {
       isError: true,
-      message: "Publish on Instagram"
+      message: "Publish on Instagram",
     };
-  }else{
+  } else {
     return {
       isError: true,
-      message: "Publish on Instagram [disabled]"
+      message: "Publish on Instagram [disabled]",
     };
   }
 };
 
-export const PostToInstaStory = async (buffer, isPost = false) => {
+export const PostToInstaStory = async (
+  buffer,
+  isPost = false
+): Promise<ProcessProps> => {
   if (isPost) {
     await login();
     const path = "file.jpg";
@@ -179,14 +185,12 @@ export const PostToInstaStory = async (buffer, isPost = false) => {
 
     return {
       isError: true,
-      message: "Publish on Instagram"
+      message: "Publish on Instagram",
     };
-
-
-  }else{
+  } else {
     return {
       isError: true,
-      message: "Publish on Instagram [disabled]"
+      message: "Publish on Instagram [disabled]",
     };
   }
 };
