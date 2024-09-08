@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="artes.svg"
+   inkscape:export-filename="/home/luizalexandrew/Developer/git/poc-daily-news/assets/logo-1000.png"
+   inkscape:export-xdpi="109.766"
+   inkscape:export-ydpi="109.766"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.32"
+     inkscape:cx="-1439.0625"
+     inkscape:cy="-503.125"
+     inkscape:window-width="1920"
+     inkscape:window-height="999"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:32.8076px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:0.820192"
+       x="-362.90939"
+       y="138.69418"
+       id="text41387"><tspan
+         sodipodi:role="line"
+         id="tspan41385"
+         style="font-weight:bold;stroke-width:0.820192"
+         x="-362.90939"
+         y="138.69418" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:64.1887px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#ffffff;stroke-width:1.60472"
+       x="-277.1123"
+       y="-148.71405"
+       id="text110817"><tspan
+         sodipodi:role="line"
+         id="tspan110815"
+         style="font-weight:bold;fill:#ffffff;stroke-width:1.60472"
+         x="-277.1123"
+         y="-148.71405">/</tspan></text>
+    <circle
+       style="fill:#ab0000;fill-opacity:1;stroke-width:1.23794;stroke-linecap:round;paint-order:stroke fill markers"
+       id="circle110819"
+       cx="-328.86981"
+       cy="-131.25932"
+       r="132.29167" />
+    <circle
+       style="fill:#c4170c;fill-opacity:1;stroke-width:1.13541;stroke-linecap:round;paint-order:stroke fill markers"
+       id="circle110821"
+       cx="-330.57108"
+       cy="-129.55806"
+       r="121.33569" />
+    <text
+       xml:space="preserve"
+       style="font-size:77.5467px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:1.93867"
+       x="-416.74066"
+       y="-134.21829"
+       id="text110825"><tspan
+         sodipodi:role="line"
+         style="font-weight:bold;fill:#ffffff;stroke-width:1.93867"
+         x="-416.74066"
+         y="-134.21829"
+         id="tspan110823">hub</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:77.5467px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:1.93867"
+       x="-414.79593"
+       y="-79.299416"
+       id="text110829"><tspan
+         sodipodi:role="line"
+         style="font-weight:bold;fill:#ffffff;stroke-width:1.93867"
+         x="-414.79593"
+         y="-79.299416"
+         id="tspan110827">news</tspan></text>
+    <g
+       id="g111093"
+       transform="matrix(2.1910437,0,0,2.1910437,552.74176,314.25382)">
+      <text
+         xml:space="preserve"
+         style="font-size:29.296px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#ab0000;fill-opacity:1;stroke-width:0.732401"
+         x="-375.0441"
+         y="-209.55153"
+         id="text110833"><tspan
+           sodipodi:role="line"
+           id="tspan110831"
+           style="font-weight:bold;fill:#ab0000;fill-opacity:1;stroke-width:0.732401"
+           x="-375.0441"
+           y="-209.55153">/</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:29.296px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#000000;stroke-width:0.732401"
+         x="-377.1608"
+         y="-209.55153"
+         id="text110837"><tspan
+           sodipodi:role="line"
+           id="tspan110835"
+           style="font-weight:bold;fill:#000000;stroke-width:0.732401"
+           x="-377.1608"
+           y="-209.55153">/</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:29.296px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#000000;stroke-width:0.732401"
+         x="-378.74832"
+         y="-209.55153"
+         id="text110841"><tspan
+           sodipodi:role="line"
+           id="tspan110839"
+           style="font-weight:bold;fill:#000000;stroke-width:0.732401"
+           x="-378.74832"
+           y="-209.55153">/</tspan></text>
+    </g>
+  </g>
+</svg>
