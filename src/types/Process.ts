@@ -1,4 +1,4 @@
 export type ProcessProps = {
-  isError: boolean;
+  isSuccess: boolean;
   message: string
 };

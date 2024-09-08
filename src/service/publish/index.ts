@@ -9,16 +9,19 @@ const PublishPlatforms = {
 };
 
 export const Publish = async (platform: string, type: string, path: string): Promise<ProcessProps> => {
+
+  console.log("[INFO: ]",platform, type, path)
+
   if (PublishPlatforms[platform] && PublishPlatforms[platform][type]) {
     const publishResponse = await PublishPlatforms[platform][type](path);
 
     return {
-      isError: publishResponse.isError,
+      isSuccess: publishResponse.isSuccess,
       message: publishResponse.message,
     };
   } else {
     return {
-      isError: true,
+      isSuccess: true,
       message: "Platform not implemented",
     };
   }

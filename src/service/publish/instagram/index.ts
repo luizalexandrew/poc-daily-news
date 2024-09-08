@@ -22,7 +22,7 @@ async function login() {
 const IS_POST = Boolean(process.env.IS_PUBLISH) || false
 
 export const PostToInstaImage = async (
-  buffer,
+  path,
 ): Promise<ProcessProps> => {
   // let file = fs.readFileSync('file.jpg');
 
@@ -39,7 +39,6 @@ export const PostToInstaImage = async (
 
   if (IS_POST) {
     await login();
-    const path = "file.jpg";
     // const { latitude, longitude, searchQuery } = {
     //   latitude: 0.0,
     //   longitude: 0.0,
@@ -82,12 +81,12 @@ export const PostToInstaImage = async (
     });
 
     return {
-      isError: true,
+      isSuccess: true,
       message: "Publish on Instagram",
     };
   } else {
     return {
-      isError: true,
+      isSuccess: true,
       message: "Publish on Instagram [disabled]",
     };
   }
@@ -184,12 +183,12 @@ export const PostToInstaStory = async (
     });
 
     return {
-      isError: true,
+      isSuccess: true,
       message: "Publish on Instagram",
     };
   } else {
     return {
-      isError: true,
+      isSuccess: true,
       message: "Publish on Instagram [disabled]",
     };
   }

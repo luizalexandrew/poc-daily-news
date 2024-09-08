@@ -13,7 +13,7 @@ app.post("/publish", async (req: Request, res: Response) => {
   const outputFile = `output/${req.body.company}/${req.body.category}/${req.body.title}`;
 
   CreateDir(outputFile);
-
+ 
   const path = await GenerateFile({
     category: req.body.category,
     company: req.body.company,
@@ -33,7 +33,7 @@ app.post("/publish", async (req: Request, res: Response) => {
 
   console.log(publishResponse)
 
-  res.send(`Post [${req.body.title}] on Instagram [${publishResponse.isError} - ${publishResponse.message}]`);
+  res.send(`Post [${req.body.title}] on Instagram [${publishResponse.isSuccess} - ${publishResponse.message}]`);
 });
 
 app.listen(port, async () => {
