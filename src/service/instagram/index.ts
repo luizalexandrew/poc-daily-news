@@ -19,7 +19,7 @@ async function login() {
   await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
 }
 
-const postToInstaImage = async (buffer, isPost = false) => {
+export const PostToInstaImage = async (buffer, isPost = false) => {
   // let file = fs.readFileSync('file.jpg');
 
   // const imageBuffer = await get({
@@ -81,7 +81,7 @@ const postToInstaImage = async (buffer, isPost = false) => {
   }
 };
 
-const postToInstaStory = async (buffer, isPost = false) => {
+export const PostToInstaStory = async (buffer, isPost = false) => {
   if (isPost) {
     await login();
     const path = "file.jpg";
@@ -200,6 +200,6 @@ const postToInstaStory = async (buffer, isPost = false) => {
 // });
 
 export default {
-  postToInstaImage,
-  postToInstaStory,
+  PostToInstaImage,
+  PostToInstaStory,
 };
