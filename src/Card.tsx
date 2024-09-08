@@ -5,22 +5,10 @@
 // Builder is a base class to create your own builders
 // loadImage is a helper function to load images from url or path
 import { JSX, Builder, loadImage } from "canvacord";
-
-interface Props {
-  category: string,
-  company: string,
-  companyLogo: string,
-  title: string,
-  description: string,
-  date: string,
-  link: string,
-  postPhoto: string,
-  type: "story" | "post" | "postlg",
-  outputPathName: string,
-}
+import {CardProps} from './types/Card'
 
 
-export class GreetingsCard extends Builder<Props> {
+export class Card extends Builder<CardProps> {
   constructor(value: "story" | "post" | "postlg") {
 
     switch (value) {
@@ -100,16 +88,9 @@ export class GreetingsCard extends Builder<Props> {
     return this;
   }
 
-  // this is where you have to define output ui
   async render() {
     const { company, companyLogo, category, title, description, date, postPhoto, link, type} = this.options.getOptions();
 
-
-    console.log(postPhoto)
-    console.log(postPhoto)
-    console.log(postPhoto)
-
-    // make sure to use the loadImage helper function to load images, otherwise you may get errors
     const image = await loadImage("https://files.metropoles.com/static/expediente/assets/images/general/portal-metropoles.jpg");
     const post = await loadImage(postPhoto);
 
@@ -172,10 +153,10 @@ export class GreetingsCard extends Builder<Props> {
             <h3 className="text-4xl text-white px-[20px]">{description}</h3>
             <h4 className="text-3xl text-white px-[20px]">{date}</h4>
             <div className={`flex items-center p-10 bg-[#30363d] rounded-3xl ${type === 'story' ? 'mb-[200px]' : 'mb-[10px]'} mx-[10px]`} >
-              <div className="flex items-center bg-[#FFFFFF] rounded-xl px-[20px]	 h-[100%]">
+              <div className="flex items-center bg-[#FFFFFF] rounded-xl px-[20px]	w-[200px]  h-[100px] flex justify-center items-center">
                 <img
                   src={logo.toDataURL()}
-                  className="flex items-center w-[200px]"
+                  className="max-w-[90%] h-[90%] m-5"
                 />
               </div>
               <div className="flex flex-col ml-6">
@@ -193,5 +174,5 @@ export class GreetingsCard extends Builder<Props> {
 }
 
 export default {
-  GreetingsCard,
+  Card,
 };

@@ -1,28 +1,15 @@
 var fs = require("fs");
 import { Font } from "canvacord";
-import { GreetingsCard } from "./GreetingsCard";
+import { Card } from "./Card";
+import { CardProps } from "./types/Card"
 
-
-type DataFile = {
-  category: string,
-  company: string,
-  companyLogo: string,
-  title: string,
-  description: string,
-  date: string,
-  link: string,
-  postPhoto: string,
-  type: "story" | "post" | "postlg",
-  outputPathName: string,
-};
-
-export const GenerateFile = async (dataFile: DataFile) => {
+export const GenerateFile = async (dataFile: CardProps) => {
   const path = __dirname + "/font/Ubuntu-Light.ttf";
   await Font.fromFile(path);
 
   const outputPath = `${dataFile.outputPathName}.jpg`
 
-  const card = new GreetingsCard(dataFile.type)
+  const card = new Card(dataFile.type)
     .setCompany(dataFile.company)
     .setCompanyLogo(dataFile.companyLogo)
     .setCategory(dataFile.category)
