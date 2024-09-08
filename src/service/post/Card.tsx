@@ -148,7 +148,7 @@ export class Card extends Builder<CardProps> {
                 <h1 className="text-5xl text-white font-bold m-0">
                   <span className="text-blue-500">{"HubNews.finance"}</span>
                 </h1>
-                <p className="text-gray-300 text-3xl m-0">{"Seu feed de notícias"}</p>
+                <p className="text-gray-300 text-3xl m-0">{"Seu feed do mercado financeiro"}</p>
               </div>
             </div>
 
