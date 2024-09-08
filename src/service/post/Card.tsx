@@ -114,7 +114,7 @@ export class Card extends Builder<CardProps> {
               position: 'absolute',
               height: `${this.height}px`,
               minWidth: '100%',
-              transform: 'translateX(-540px)'
+              transform: 'translateX(-250px)'
             }}
           />
         </div>

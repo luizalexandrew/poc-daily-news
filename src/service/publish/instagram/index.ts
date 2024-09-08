@@ -84,6 +84,7 @@ export const PostToInstaImage = async (path): Promise<ProcessProps> => {
         message: "Publish on Instagram",
       };
     } catch (error) {
+      console.log(error)
       return {
         isSuccess: false,
         message: "Error publish on Instagram",
@@ -97,11 +98,10 @@ export const PostToInstaImage = async (path): Promise<ProcessProps> => {
   }
 };
 
-export const PostToInstaStory = async (buffer): Promise<ProcessProps> => {
+export const PostToInstaStory = async (path): Promise<ProcessProps> => {
   if (IS_POST) {
     try {
       await login();
-      const path = "file.jpg";
       const file = fs.readFileSync(path);
 
       await ig.publish.story({
@@ -191,6 +191,7 @@ export const PostToInstaStory = async (buffer): Promise<ProcessProps> => {
         message: "Publish on Instagram",
       };
     } catch (error) {
+      console.log(error)
       return {
         isSuccess: false,
         message: "Error publish on Instagram",
