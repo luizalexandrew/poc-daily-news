@@ -1,10 +1,10 @@
 var fs = require("fs");
 import { Font } from "canvacord";
 import { Card } from "./Card";
-import { CardProps } from "./types/Card"
+import { CardProps } from "../../types/Card"
 
 export const GenerateFile = async (dataFile: CardProps) => {
-  const path = __dirname + "/font/Ubuntu-Light.ttf";
+  const path = __dirname + "/../../font/Ubuntu-Light.ttf";
   await Font.fromFile(path);
 
   const outputPath = `${dataFile.outputPathName}.jpg`

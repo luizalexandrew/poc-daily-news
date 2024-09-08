@@ -5,7 +5,7 @@
 // Builder is a base class to create your own builders
 // loadImage is a helper function to load images from url or path
 import { JSX, Builder, loadImage } from "canvacord";
-import {CardProps} from './types/Card'
+import {CardProps} from '../../types/Card'
 
 
 export class Card extends Builder<CardProps> {

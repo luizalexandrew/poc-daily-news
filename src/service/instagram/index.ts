@@ -1,40 +1,17 @@
-import express, { Request, Response } from "express";
+var fs = require("fs");
 require("dotenv").config();
 
 const { IgApiClient } = require("instagram-private-api");
 const { get } = require("request-promise");
 
-import { StickerBuilder } from "./service/instagram/sticker-builder";
-var fs = require("fs");
-
-const app = express();
-
-app.use(express.json());
-
-const port: number = 3000;
+import {
+  StickerBuilder,
+  Clamp,
+  GenerateUsertagFromName,
+} from "./sticker-builder";
 
 const ig = new IgApiClient();
 
-import { GenerateFile } from "./service/post";
-
-const clamp = (value: number, min: number, max: number) =>
-  Math.max(Math.min(value, max), min);
-
-async function generateUsertagFromName(
-  name: string,
-  x: number,
-  y: number
-): Promise<{ user_id: number; position: [number, number] }> {
-  // constrain x and y to 0..1 (0 and 1 are not supported)
-  x = clamp(x, 0.0001, 0.9999);
-  y = clamp(y, 0.0001, 0.9999);
-  // get the user_id (pk) for the name
-  const { pk } = await ig.user.searchExact(name);
-  return {
-    user_id: pk,
-    position: [x, y],
-  };
-}
 
 async function login() {
   ig.state.generateDevice(process.env.IG_USERNAME);
@@ -95,7 +72,7 @@ const postToInstaImage = async (buffer, isPost = false) => {
       usertags: {
         in: [
           // tag the user 'instagram' @ (0.5 | 0.5)
-          await generateUsertagFromName("instagram", 0.5, 0.5),
+          await GenerateUsertagFromName("instagram", 0.5, 0.5, ig),
         ],
       },
     });
@@ -222,26 +199,7 @@ const postToInstaStory = async (buffer, isPost = false) => {
 //   res.send("Postando no story instagram");
 // });
 
-app.post("/publish", async (req: Request, res: Response) => {
-  const path = await GenerateFile({
-    category: req.body.category,
-    company: req.body.company,
-    companyLogo: req.body.companyLogo,
-    title: req.body.title,
-    description: req.body.description,
-    postPhoto: req.body.postPhoto,
-    date: req.body.date,
-    link: req.body.link,
-    type: req.body.type,
-    outputPathName: "file",
-  });
-
-  console.log("Output file: ", path);
-
-  // await postToInstaImage(image, false);
-  res.send("Postando no story instagram");
-});
-
-app.listen(port, async () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+export default {
+  postToInstaImage,
+  postToInstaStory,
+};
